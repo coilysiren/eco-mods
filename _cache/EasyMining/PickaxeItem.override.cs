@@ -21,6 +21,7 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Objects;
     using Eco.Core.Items;
 
+    [Category("Hidden"), Tag("Excavation")]
     public partial class PickaxeItem : ToolItem
     {
 
@@ -95,7 +96,7 @@ namespace Eco.Mods.TechTree
                     pack.AddPostEffect(() => rubble.Breakup(context.Player));
                     return (InteractResult)pack.TryPerform(false);
                 }
-                
+
                 return InteractResult.NoOp;
             }
 
