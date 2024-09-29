@@ -47,7 +47,7 @@ namespace Eco.Mods.TechTree
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BiocharRecipe),
                 start: 0.2f,
-                skillType: typeof(FarmingSkill),
+                skillType: typeof(FarmingSkill)
                 typeof(FarmingFocusedSpeedTalent)
                 typeof(FarmingParallelSpeedTalent)
             );
