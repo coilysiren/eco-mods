@@ -20,6 +20,7 @@ namespace Eco.Mods.TechTree
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(FarmingSkill), 4)]
     public partial class BiocharRecipe : RecipeFamily
@@ -33,7 +34,7 @@ namespace Eco.Mods.TechTree
                 ingredients: new List<IngredientElement>
                 {
                     new IngredientElement(typeof(CharcoalItem), 4, typeof(FarmingSkill)),
-                    new IngredientElement("Crop", 10, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
+                    new IngredientElement("Crop", 10, typeof(FarmingSkill)),
                 },
                 items: new List<CraftingElement>
                 {
@@ -47,23 +48,23 @@ namespace Eco.Mods.TechTree
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BiocharRecipe),
                 start: 0.2f,
-                skillType: typeof(FarmingSkill)
-                typeof(FarmingFocusedSpeedTalent)
+                skillType: typeof(FarmingSkill),
+                typeof(FarmingFocusedSpeedTalent),
                 typeof(FarmingParallelSpeedTalent)
             );
             this.ModsPreInitialize();
             this.Initialize(
                 displayText: Localizer.DoStr("Biochar"),
-                recipeType: typeof(BiocharRecipe),
+                recipeType: typeof(BiocharRecipe)
             );
             this.ModsPostInitialize();
             CraftingComponent.AddRecipe(
                 tableType: typeof(BakeryOvenObject),
-                recipe: this,
+                recipe: this
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(KilnObject),
-                recipe: this,
+                recipe: this
             );
         }
         partial void ModsPreInitialize();
