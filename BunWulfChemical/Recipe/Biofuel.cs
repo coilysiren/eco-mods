@@ -20,40 +20,49 @@ namespace Eco.Mods.TechTree
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 4)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 2)]
     public partial class BiofuelRecipe : RecipeFamily
     {
         public BiofuelRecipe()
         {
-            this.Recipes = new List<Recipe>
-            {
-                new Recipe(
-                    "Biofuel",
-                    Localizer.DoStr("Biofuel"),
-                    new IngredientElement[]
-                    {
-                        new IngredientElement(typeof(PlasticItem), 40, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                        new IngredientElement(typeof(EthanolItem), 5, true),
-                        new IngredientElement("Fat", 20, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    },
-                    new CraftingElement[] {
-                        new CraftingElement<BiodieselItem>(5),
-                        new CraftingElement<OilItem>(typeof(CuttingEdgeCookingSkill), 10, typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    }
-                )
-            };
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(200, typeof(CuttingEdgeCookingSkill));
-            this.CraftMinutes = CreateCraftTimeValue(
-                typeof(BiofuelRecipe),
-                4,
-                typeof(CuttingEdgeCookingSkill),
-                typeof(CuttingEdgeCookingFocusedSpeedTalent)
+            var recipe = new Recipe();
+            recipe.Init(
+                name: "Biofuel",
+                displayName: Localizer.DoStr("Plastic Container Biofuel"),
+                ingredients: new List<IngredientElement>
+                {
+                    // static ingredients, 1 => 1
+                    new IngredientElement(typeof(EthanolItem), 1, true),
+                    // dynamic ingredients
+                    new IngredientElement(typeof(PlasticItem), 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 6, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                },
+                items: new List<CraftingElement>
+                {
+                    new CraftingElement<BiodieselItem>(1),
+                    new CraftingElement<OilItem>(4),
+                }
             );
-            this.Initialize(Localizer.DoStr("Biofuel"), typeof(BiofuelRecipe));
-            CraftingComponent.AddRecipe(typeof(LaboratoryObject), this);
-            CraftingComponent.AddRecipe(typeof(OilRefineryObject), this);
+            this.Recipes = new List<Recipe> { recipe };
+            this.ExperienceOnCraft = 1;
+            this.LaborInCalories = CreateLaborInCaloriesValue(50, typeof(CuttingEdgeCookingSkill));
+            this.CraftMinutes = CreateCraftTimeValue(
+                beneficiary: typeof(BiofuelRecipe),
+                start: 1,
+                skillType: typeof(CuttingEdgeCookingSkill),
+                typeof(CuttingEdgeCookingFocusedSpeedTalent),
+                typeof(CuttingEdgeCookingParallelSpeedTalent)
+            );
+            this.Initialize(
+                displayText: Localizer.DoStr("Plastic Container Biofuel"),
+                recipeType: typeof(BiofuelRecipe)
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(LaboratoryObject),
+                recipe: this
+            );
         }
     }
 }
