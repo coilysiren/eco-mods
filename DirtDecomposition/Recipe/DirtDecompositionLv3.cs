@@ -48,9 +48,7 @@
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(DirtProcessingV3Recipe),
                 start: 0.1f,
-                skillType: typeof(MiningSkill),
-                typeof(MiningFocusedSpeedTalent),
-                typeof(MiningParallelSpeedTalent)
+                skillType: typeof(MiningSkill)
             );
             this.Initialize(
                 displayText: Localizer.DoStr("Dirt Processing V3"),

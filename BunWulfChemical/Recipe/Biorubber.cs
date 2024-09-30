@@ -20,6 +20,7 @@ namespace Eco.Mods.TechTree
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 3)]
     public partial class BiorubberRecipe : RecipeFamily
