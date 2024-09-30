@@ -30,21 +30,23 @@ namespace Eco.Mods.TechTree
             var recipe = new Recipe();
             recipe.Init(
                 name: "Biochar",
-                displayName: Localizer.DoStr("Biochar"),
+                displayName: Localizer.DoStr("Biochar Charcoal Burning"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement(typeof(CharcoalItem), 4, typeof(FarmingSkill)),
-                    new IngredientElement("Crop", 10, typeof(FarmingSkill)),
+                    // static ingredients, 4 => 6
+                    new IngredientElement(typeof(CharcoalItem), 4, true),
+                    // dynamic ingredients
+                    new IngredientElement("Crop", 10, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
-                    new CraftingElement<CharcoalItem>(5),
-                    new CraftingElement<OilItem>(2),
+                    new CraftingElement<CharcoalItem>(6),
+                    new CraftingElement<OilItem>(4),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(25, typeof(FarmingSkill));
+            this.ExperienceOnCraft = 2;
+            this.LaborInCalories = CreateLaborInCaloriesValue(50, typeof(FarmingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BiocharRecipe),
                 start: 0.2f,
@@ -52,12 +54,10 @@ namespace Eco.Mods.TechTree
                 typeof(FarmingFocusedSpeedTalent),
                 typeof(FarmingParallelSpeedTalent)
             );
-            this.ModsPreInitialize();
             this.Initialize(
-                displayText: Localizer.DoStr("Biochar"),
+                displayText: Localizer.DoStr("Biochar Charcoal Burning"),
                 recipeType: typeof(BiocharRecipe)
             );
-            this.ModsPostInitialize();
             CraftingComponent.AddRecipe(
                 tableType: typeof(BakeryOvenObject),
                 recipe: this
@@ -67,7 +67,5 @@ namespace Eco.Mods.TechTree
                 recipe: this
             );
         }
-        partial void ModsPreInitialize();
-        partial void ModsPostInitialize();
     }
 }
