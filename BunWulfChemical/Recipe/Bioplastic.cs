@@ -20,40 +20,47 @@ namespace Eco.Mods.TechTree
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 6)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 2)]
     public partial class BioplasticRecipe : RecipeFamily
     {
         public BioplasticRecipe()
         {
-            this.Recipes = new List<Recipe>
-            {
-                new Recipe(
-                    "Bioplastic",
-                    Localizer.DoStr("Bioplastic"),
-                    new IngredientElement[]
-                    {
-                        new IngredientElement("Fat", 5, true),
-                        new IngredientElement("Vegetable", 5, true),
-                    },
-                    new CraftingElement[] {
-                        new CraftingElement<PlasticItem>(2),
-                        new CraftingElement<OilItem>(typeof(CuttingEdgeCookingSkill), 2, typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    }
-                )
-            };
-
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(25, typeof(CuttingEdgeCookingSkill));
-            this.CraftMinutes = CreateCraftTimeValue(
-                typeof(BioplasticRecipe),
-                1,
-                typeof(CuttingEdgeCookingSkill),
-                typeof(CuttingEdgeCookingFocusedSpeedTalent)
+            var recipe = new Recipe();
+            recipe.Init(
+                name: "Bioplastic",
+                displayName: Localizer.DoStr("Plant Based Bioplastic"),
+                ingredients: new List<IngredientElement>
+                {
+                    // dynamic ingredients
+                    new IngredientElement("Fat", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Vegetable", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                },
+                items: new List<CraftingElement>
+                {
+                    new CraftingElement<PlasticItem>(2),
+                    new CraftingElement<OilItem>(2),
+                }
             );
-            this.Initialize(Localizer.DoStr("Bioplastic"), typeof(BioplasticRecipe));
-            CraftingComponent.AddRecipe(typeof(LaboratoryObject), this);
-            CraftingComponent.AddRecipe(typeof(OilRefineryObject), this);
+            this.Recipes = new List<Recipe> { recipe };
+            this.ExperienceOnCraft = 1;
+            this.LaborInCalories = CreateLaborInCaloriesValue(100, typeof(CuttingEdgeCookingSkill));
+            this.CraftMinutes = CreateCraftTimeValue(
+                beneficiary: typeof(BioplasticRecipe),
+                start: 1,
+                skillType: typeof(CuttingEdgeCookingSkill),
+                typeof(CuttingEdgeCookingFocusedSpeedTalent),
+                typeof(CuttingEdgeCookingParallelSpeedTalent)
+            );
+            this.Initialize(
+                displayText: Localizer.DoStr("Plant Based Bioplastic"),
+                recipeType: typeof(BioplasticRecipe)
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(LaboratoryObject),
+                recipe: this
+            );
         }
     }
 }
