@@ -26,32 +26,38 @@ namespace Eco.Mods.TechTree
     {
         public BiorubberRecipe()
         {
-            this.Recipes = new List<Recipe>
-            {
-                new Recipe(
-                    "Biorubber",
-                    Localizer.DoStr("Biorubber"),
-                    new IngredientElement[]
-                    {
-                        new IngredientElement(typeof(CeibaLogItem), 1, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                        new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    },
-                    new CraftingElement[] {
-                        new CraftingElement<SyntheticRubberItem>(10),
-                    }
-                )
-            };
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(100, typeof(CuttingEdgeCookingSkill));
-            this.CraftMinutes = CreateCraftTimeValue(
-                typeof(BiorubberRecipe),
-                0.3f,
-                typeof(CuttingEdgeCookingSkill),
-                typeof(CuttingEdgeCookingFocusedSpeedTalent)
+            var recipe = new Recipe();
+            recipe.Init(
+                name: "Biorubber",
+                displayName: Localizer.DoStr("Valuable Tree Rubbe"),
+                ingredients: new List<IngredientElement>
+                {
+                    new IngredientElement(typeof(CeibaLogItem), 2, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                },
+                items: new List<CraftingElement>
+                {
+                    new CraftingElement<SyntheticRubberItem>(10),
+                }
             );
-            this.Initialize(Localizer.DoStr("Biorubber"), typeof(BiorubberRecipe));
-            CraftingComponent.AddRecipe(typeof(LaboratoryObject), this);
-            CraftingComponent.AddRecipe(typeof(OilRefineryObject), this);
+            this.Recipes = new List<Recipe> { recipe };
+            this.ExperienceOnCraft = 5;
+            this.LaborInCalories = CreateLaborInCaloriesValue(250, typeof(CuttingEdgeCookingSkill));
+            this.CraftMinutes = CreateCraftTimeValue(
+                beneficiary: typeof(BiorubberRecipe),
+                start: 4,
+                skillType: typeof(CuttingEdgeCookingSkill),
+                typeof(CuttingEdgeCookingFocusedSpeedTalent),
+                typeof(CuttingEdgeCookingParallelSpeedTalent)
+            );
+            this.Initialize(
+                displayText: Localizer.DoStr("Valuable Tree Rubber"),
+                recipeType: typeof(BiorubberRecipe)
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(LaboratoryObject),
+                recipe: this
+            );
         }
     }
 }
