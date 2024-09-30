@@ -20,40 +20,48 @@ namespace Eco.Mods.TechTree
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 5)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 2)]
     public partial class BiopoxyRecipe : RecipeFamily
     {
         public BiopoxyRecipe()
         {
-            this.Recipes = new List<Recipe>
-            {
-                new Recipe(
-                    "Biopoxy",
-                    Localizer.DoStr("Biopoxy"),
-                    new IngredientElement[]
-                    {
-                        new IngredientElement(typeof(PlasticItem), 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                        new IngredientElement("Coal", 20, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                        new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    },
-                    new CraftingElement[] {
-                        new CraftingElement<EpoxyItem>(5),
-                        new CraftingElement<OilItem>(typeof(CuttingEdgeCookingSkill), 10, typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    }
-                )
-            };
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(25, typeof(CuttingEdgeCookingSkill));
-            this.CraftMinutes = CreateCraftTimeValue(
-                typeof(BiopoxyRecipe),
-                1,
-                typeof(CuttingEdgeCookingSkill),
-                typeof(CuttingEdgeCookingFocusedSpeedTalent)
+            var recipe = new Recipe();
+            recipe.Init(
+                name: "Biopoxy",
+                displayName: Localizer.DoStr("Coal Plastic Biopoxy"),
+                ingredients: new List<IngredientElement>
+                {
+                    // dynamic ingredients
+                    new IngredientElement(typeof(PlasticItem), 4, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Coal", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                },
+                items: new List<CraftingElement>
+                {
+                        new CraftingElement<EpoxyItem>(2),
+                        new CraftingElement<OilItem>(10),
+                }
             );
-            this.Initialize(Localizer.DoStr("Biopoxy"), typeof(BiopoxyRecipe));
-            CraftingComponent.AddRecipe(typeof(LaboratoryObject), this);
-            CraftingComponent.AddRecipe(typeof(OilRefineryObject), this);
+            this.Recipes = new List<Recipe> { recipe };
+            this.ExperienceOnCraft = 1;
+            this.LaborInCalories = CreateLaborInCaloriesValue(100, typeof(CuttingEdgeCookingSkill));
+            this.CraftMinutes = CreateCraftTimeValue(
+                beneficiary: typeof(BiopoxyRecipe),
+                start: 1,
+                skillType: typeof(CuttingEdgeCookingSkill),
+                typeof(CuttingEdgeCookingFocusedSpeedTalent),
+                typeof(CuttingEdgeCookingParallelSpeedTalent)
+            );
+            this.Initialize(
+                displayText: Localizer.DoStr("Coal Plastic Biopoxy"),
+                recipeType: typeof(BiopoxyRecipe)
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(LaboratoryObject),
+                recipe: this
+            );
         }
     }
 }
