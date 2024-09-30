@@ -23,13 +23,13 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 3)]
-    public partial class BiofuelRecipe : RecipeFamily
+    public partial class AdvancedBiofuel : RecipeFamily
     {
-        public BiofuelRecipe()
+        public AdvancedBiofuel()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "Biofuel",
+                name: "AdvancedBiofuel",
                 displayName: Localizer.DoStr("50% Ethanol Biofuel"),
                 ingredients: new List<IngredientElement>
                 {
@@ -49,7 +49,7 @@ namespace Eco.Mods.TechTree
             this.ExperienceOnCraft = 2;
             this.LaborInCalories = CreateLaborInCaloriesValue(100, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(BiofuelRecipe),
+                beneficiary: typeof(AdvancedBiofuel),
                 start: 1,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
@@ -57,7 +57,7 @@ namespace Eco.Mods.TechTree
             );
             this.Initialize(
                 displayText: Localizer.DoStr("50% Ethanol Biofuel"),
-                recipeType: typeof(BiofuelRecipe)
+                recipeType: typeof(AdvancedBiofuel)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(LaboratoryObject),

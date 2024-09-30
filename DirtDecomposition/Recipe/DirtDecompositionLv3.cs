@@ -23,14 +23,14 @@
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(MiningSkill), 7)]
-    public partial class DirtDecompositionLv3Recipe : RecipeFamily
+    public partial class DirtProcessingV3Recipe : RecipeFamily
     {
-        public DirtDecompositionLv3Recipe()
+        public DirtProcessingV3Recipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "DirtDecompositionLv3",
-                displayName: Localizer.DoStr("Dirt Decomposition Lv3"),
+                name: "DirtProcessingV3",
+                displayName: Localizer.DoStr("Dirt Processing V3"),
                 ingredients: new List<IngredientElement>
                 {
                     new IngredientElement(typeof(DirtItem), 10, true),
@@ -46,15 +46,15 @@
             this.ExperienceOnCraft = 0.1f;
             this.LaborInCalories = CreateLaborInCaloriesValue(800, typeof(MiningSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(DirtDecompositionLv3Recipe),
+                beneficiary: typeof(DirtProcessingV3Recipe),
                 start: 0.1f,
                 skillType: typeof(MiningSkill),
                 typeof(MiningFocusedSpeedTalent),
                 typeof(MiningParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Dirt Decomposition Lv3"),
-                recipeType: typeof(DirtDecompositionLv3Recipe)
+                displayText: Localizer.DoStr("Dirt Processing V3"),
+                recipeType: typeof(DirtProcessingV3Recipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(SensorBasedBeltSorterObject),
