@@ -20,38 +20,50 @@
     using Eco.World;
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
+    using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(MiningSkill), 3)]
-    public partial class DirtDecompositionLv1Recipe :
-        RecipeFamily
+    public partial class DirtDecompositionLv1Recipe : RecipeFamily
     {
         public DirtDecompositionLv1Recipe()
         {
-
-            this.Recipes = new List<Recipe>
-            {
-                new Recipe(
-                    "DirtDecompositionLv1",
-                    Localizer.DoStr("Dirt Decomposition Lv1"),
-                    new IngredientElement[]
-                    {
+            var recipe = new Recipe();
+            recipe.Init(
+                name: "DirtDecompositionLv1",
+                displayName: Localizer.DoStr("Dirt Decomposition Lv1"),
+                ingredients: new List<IngredientElement>
+                {
                     new IngredientElement(typeof(DirtItem), 20, true),
-                    },
-                    new CraftingElement[]
-                    {
-               new CraftingElement<ClayItem>(2),
-               new CraftingElement<SandItem>(7),
-               new CraftingElement<CompostItem>(1),
-                    }
-                )
-            };
-            this.LaborInCalories = CreateLaborInCaloriesValue(400, typeof(MiningSkill));
+                },
+                items: new List<CraftingElement>
+                {
+                    new CraftingElement<ClayItem>(2),
+                    new CraftingElement<SandItem>(7),
+                    new CraftingElement<CompostItem>(1),
+                }
+            );
+            this.Recipes = new List<Recipe> { recipe };
             this.ExperienceOnCraft = 0.1f;
-            this.CraftMinutes = CreateCraftTimeValue(typeof(DirtDecompositionLv1Recipe), 7f, typeof(MiningSkill));
-            this.Initialize(Localizer.DoStr("Dirt Decomposition Lv1"), typeof(DirtDecompositionLv1Recipe));
-            CraftingComponent.AddRecipe(typeof(ScreeningMachineObject), this);
-            CraftingComponent.AddRecipe(typeof(RockerBoxObject), this);
+            this.LaborInCalories = CreateLaborInCaloriesValue(400, typeof(MiningSkill));
+            this.CraftMinutes = CreateCraftTimeValue(
+                beneficiary: typeof(DirtDecompositionLv1Recipe),
+                start: 0.1f,
+                skillType: typeof(MiningSkill),
+                typeof(MiningFocusedSpeedTalent),
+                typeof(MiningParallelSpeedTalent)
+            );
+            this.Initialize(
+                displayText: Localizer.DoStr("Dirt Decomposition Lv1"),
+                recipeType: typeof(DirtDecompositionLv1Recipe)
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(ScreeningMachineObject),
+                recipe: this
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(RockerBoxObject),
+                recipe: this
+            );
         }
     }
-
 }
