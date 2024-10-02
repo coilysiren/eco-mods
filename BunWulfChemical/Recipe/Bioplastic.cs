@@ -22,7 +22,7 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Pipes;
     using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 2)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
     public partial class BioplasticRecipe : RecipeFamily
     {
         public BioplasticRecipe()
@@ -33,22 +33,21 @@ namespace Eco.Mods.TechTree
                 displayName: Localizer.DoStr("Plant Based Bioplastic"),
                 ingredients: new List<IngredientElement>
                 {
-                    // dynamic ingredients
-                    new IngredientElement("Fat", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    new IngredientElement("Vegetable", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Vegetable", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
                     new CraftingElement<PlasticItem>(2),
-                    new CraftingElement<OilItem>(2),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
+            // Same as Oil Drilling
             this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(100, typeof(CuttingEdgeCookingSkill));
+            this.LaborInCalories = CreateLaborInCaloriesValue(180, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BioplasticRecipe),
-                start: 1,
+                start: 1.5f,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)

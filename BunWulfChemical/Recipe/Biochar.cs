@@ -22,7 +22,7 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Pipes;
     using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(FarmingSkill), 4)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
     public partial class BiocharRecipe : RecipeFamily
     {
         public BiocharRecipe()
@@ -33,10 +33,8 @@ namespace Eco.Mods.TechTree
                 displayName: Localizer.DoStr("Biochar Charcoal Burning"),
                 ingredients: new List<IngredientElement>
                 {
-                    // static ingredients, 4 => 6
-                    new IngredientElement(typeof(CharcoalItem), 4, true),
-                    // dynamic ingredients
-                    new IngredientElement("Crop", 10, typeof(FarmingSkill), typeof(FarmingLavishResourcesTalent)),
+                    new IngredientElement(typeof(CharcoalItem), 4, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Crop", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
@@ -46,13 +44,13 @@ namespace Eco.Mods.TechTree
             );
             this.Recipes = new List<Recipe> { recipe };
             this.ExperienceOnCraft = 2;
-            this.LaborInCalories = CreateLaborInCaloriesValue(50, typeof(FarmingSkill));
+            this.LaborInCalories = CreateLaborInCaloriesValue(50, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BiocharRecipe),
-                start: 0.2f,
-                skillType: typeof(FarmingSkill),
-                typeof(FarmingFocusedSpeedTalent),
-                typeof(FarmingParallelSpeedTalent)
+                start: 2.4f,
+                skillType: typeof(CuttingEdgeCookingSkill),
+                typeof(CuttingEdgeCookingFocusedSpeedTalent),
+                typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
                 displayText: Localizer.DoStr("Biochar Charcoal Burning"),

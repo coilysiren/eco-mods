@@ -22,7 +22,7 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Pipes;
     using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 3)]
+    [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
     public partial class BiorubberRecipe : RecipeFamily
     {
         public BiorubberRecipe()
@@ -30,11 +30,11 @@ namespace Eco.Mods.TechTree
             var recipe = new Recipe();
             recipe.Init(
                 name: "Biorubber",
-                displayName: Localizer.DoStr("Valuable Tree Rubbe"),
+                displayName: Localizer.DoStr("Tree Rubber"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement(typeof(CeibaLogItem), 2, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement(typeof(CeibaLogItem), 1, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 20, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
@@ -42,17 +42,18 @@ namespace Eco.Mods.TechTree
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            this.ExperienceOnCraft = 5;
-            this.LaborInCalories = CreateLaborInCaloriesValue(250, typeof(CuttingEdgeCookingSkill));
+            // Oil Drilling * 4
+            this.ExperienceOnCraft = 4;
+            this.LaborInCalories = CreateLaborInCaloriesValue(720, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(BiorubberRecipe),
-                start: 4,
+                start: 6,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Valuable Tree Rubber"),
+                displayText: Localizer.DoStr("Tree Rubber"),
                 recipeType: typeof(BiorubberRecipe)
             );
             CraftingComponent.AddRecipe(
