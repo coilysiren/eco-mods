@@ -23,22 +23,21 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
-    public partial class BiopoxyRecipe : RecipeFamily
+    public partial class CarboNylonRecipe : RecipeFamily
     {
-        public BiopoxyRecipe()
+        public CarboNylonRecipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "Biopoxy",
-                displayName: Localizer.DoStr("Coal Fat Biopoxy"),
+                name: "CarboNylon",
+                displayName: Localizer.DoStr("Coal Based Nylon"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement("Coal", 4, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Coal", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
-                        new CraftingElement<EpoxyItem>(2),
+                    new CraftingElement<NylonItem>(8),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
@@ -46,15 +45,15 @@ namespace Eco.Mods.TechTree
             this.ExperienceOnCraft = 1;
             this.LaborInCalories = CreateLaborInCaloriesValue(180, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(BiopoxyRecipe),
+                beneficiary: typeof(CarboNylonRecipe),
                 start: 1.5f,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Coal Fat Biopoxy"),
-                recipeType: typeof(BiopoxyRecipe)
+                displayText: Localizer.DoStr("Coal Based Nylon"),
+                recipeType: typeof(CarboNylonRecipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(LaboratoryObject),
