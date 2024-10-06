@@ -22,18 +22,18 @@
     using Eco.Gameplay.Pipes;
     using Eco.Gameplay.Items.Recipes;
 
-    [RequiresSkill(typeof(MiningSkill), 7)]
-    public partial class DirtProcessingV3Recipe : RecipeFamily
+    [RequiresSkill(typeof(MiningSkill), 5)]
+    public partial class DirtProcessingLvl2Recipe : RecipeFamily
     {
-        public DirtProcessingV3Recipe()
+        public DirtProcessingLvl2Recipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "DirtProcessingV3",
-                displayName: Localizer.DoStr("Dirt Processing V3"),
+                name: "DirtProcessingLvl2",
+                displayName: Localizer.DoStr("Dirt Processing Lvl 2"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement(typeof(DirtItem), 10, true),
+                    new IngredientElement(typeof(DirtItem), 15, true),
                 },
                 items: new List<CraftingElement>
                 {
@@ -43,19 +43,23 @@
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            this.ExperienceOnCraft = 0.1f;
-            this.LaborInCalories = CreateLaborInCaloriesValue(800, typeof(MiningSkill));
+            this.ExperienceOnCraft = 1;
+            this.LaborInCalories = CreateLaborInCaloriesValue(200, typeof(MiningSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(DirtProcessingV3Recipe),
-                start: 0.1f,
+                beneficiary: typeof(DirtProcessingLvl2Recipe),
+                start: 1,
                 skillType: typeof(MiningSkill)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Dirt Processing V3"),
-                recipeType: typeof(DirtProcessingV3Recipe)
+                displayText: Localizer.DoStr("Dirt Processing Lvl 2"),
+                recipeType: typeof(DirtProcessingLvl2Recipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(SensorBasedBeltSorterObject),
+                recipe: this
+            );
+            CraftingComponent.AddRecipe(
+                tableType: typeof(ScreeningMachineObject),
                 recipe: this
             );
         }
