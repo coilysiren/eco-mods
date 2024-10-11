@@ -43,7 +43,6 @@ namespace Eco.Mods.TechTree
                 }
             );
             var baseRecipe = new EpoxyRecipe();
-            var skill = new CuttingEdgeCookingSkill();
             this.Recipes = new List<Recipe> { recipe };
             this.ExperienceOnCraft = baseRecipe.ExperienceOnCraft;
             this.LaborInCalories = CreateLaborInCaloriesValue(baseRecipe.LaborInCalories.GetBaseValue / 4, typeof(CuttingEdgeCookingSkill));
