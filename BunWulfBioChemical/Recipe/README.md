@@ -10,19 +10,13 @@ Note that every recipe includes a healthy amount of oil or fat. This number will
 
 ### Plant Based Bioplastic
 
-Uses vegetable and fat to replicate something like corn based PLA. It uses vegetable tag instead of corn to make the recipe easier to use.
-
-This recipe idea was what spawned the entire idea of this mod.
+Uses vegetable and fat to replicate something like corn based PLA. It uses vegetable tag instead of corn to make the recipe easier to use. This recipe idea was what spawned the entire idea of this mod.
 
 The recipe is 5 vegatable, 10 fat => 2 plastic
 
 ### Plastic Container Biofuel, 50% Ethanol
 
-Uses 50% of the Ethanol required in the Oil Drilling recipe to make Biodiesel directly from the Cutting Edge Cooking skill.
-
-This recipe is strictly superior to the Oil Drilling recipe, due to requiring "50%" of the ethanol that Oil Drilling requires. It also takes Oil Drilling labor out of the loop for fuel creation, which is an unambiguous buff for the Cutting Edge Cooking user.
-
-The recipe also uses a plastic container, presumably a plant based plastic container, to take iron out of the equation.
+Uses 50% of the Ethanol required in the Oil Drilling recipe to make Biodiesel directly from the Cutting Edge Cooking skill. This recipe is strictly superior to the Oil Drilling recipe, due to requiring "50%" of the ethanol that Oil Drilling requires. It also takes Oil Drilling labor out of the loop for fuel creation, which is an unambiguous buff for the Cutting Edge Cooking user. The recipe also uses a plastic container, presumably a plant based plastic container, to take iron out of the equation.
 
 The recipe is 4 ethanol, 8 plastic, 10 fat => 2 biodiesel
 
@@ -34,26 +28,18 @@ The recipe is 1 ceiba log, 10 fat => 10 rubber
 
 ### Coal Fat Epoxy
 
-One of the coal (carbon) based recipes.
+One of the charcoal (carbon) based recipes. This recipe uses charcoal and fat to make a more accessible version of Oil Drilling's Epoxy. Charcoal and fat were chosen to approximate some kind of "sticky" substance.
 
-This recipe uses coal and fat to make a more accessible version of Oil Drilling's Epoxy. Coal and Fat were chosen to approximate some kind of "sticky" substance.
-
-The recipe is 4 coal, 10 fat => 2 epoxy
+The recipe is 4 charcoal, 10 fat => 2 epoxy
 
 ### Coal Based Nylon
 
-One of the coal (carbon) based recipes.
+One of the charcoal (carbon) based recipes. This recipe again uses charcoal and fat to create nylon. This recipe is based on the idea that nylon is a synthetic carbon based material/
 
-This recipe again uses coal and fat to create Nylon. This recipe is based on the idea that Nylon is a synthetic carbon based material/
-
-The recipe is 10 coal, 10 fat => 8 nylon
+The recipe is 10 charcoal, 10 fat => 8 nylon
 
 ### Biochar Charcoal Burning
 
-One of the coal (carbon) based recipes.
-
-Replicates charcoal using coal and crops inside of a bakery oven or kiln. Creates oil as a valuable by product.
-
-This recipes was primarily added as a flavorful test case, so the mod author could get used to the modding scene.
+One of the charcoal (carbon) based recipes. Replicates more charcoal using some base charcoal and crops inside of a bakery oven or kiln. Creates oil as a valuable by product. This recipes was primarily added as a flavorful test case, so the mod author could get used to the modding scene. It can also be used to create a lot of the fat (oil) that and charcoal required for the other recipes.
 
 The recipe is 4 charcoal, 10 crops => 6 charcoal, 4 oil
