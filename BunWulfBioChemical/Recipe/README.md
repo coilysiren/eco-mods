@@ -28,18 +28,18 @@ The recipe is 1 ceiba log, 10 fat => 10 rubber
 
 ### Coal Fat Epoxy
 
-One of the charcoal (carbon) based recipes. This recipe uses charcoal and fat to make a more accessible version of Oil Drilling's Epoxy. Charcoal and fat were chosen to approximate some kind of "sticky" substance.
+One of the coal (carbon) based recipes. This recipe uses coal and fat to make a more accessible version of Oil Drilling's Epoxy. Coal and fat were chosen to approximate some kind of "sticky" substance.
 
-The recipe is 4 charcoal, 10 fat => 2 epoxy
+The recipe is 4 coal, 10 fat => 2 epoxy
 
 ### Coal Based Nylon
 
-One of the charcoal (carbon) based recipes. This recipe again uses charcoal and fat to create nylon. This recipe is based on the idea that nylon is a synthetic carbon based material/
+One of the coal (carbon) based recipes. This recipe again uses coal and fat to create nylon. This recipe is based on the idea that nylon is a synthetic carbon based material/
 
-The recipe is 10 charcoal, 10 fat => 8 nylon
+The recipe is 10 coal, 10 fat => 8 nylon
 
 ### Biochar Charcoal Burning
 
-One of the charcoal (carbon) based recipes. Replicates more charcoal using some base charcoal and crops inside of a bakery oven or kiln. Creates oil as a valuable by product. This recipes was primarily added as a flavorful test case, so the mod author could get used to the modding scene. It can also be used to create a lot of the fat (oil) that and charcoal required for the other recipes.
+One of the coal (carbon) based recipes. Replicates more charcoal using some base charcoal and crops inside of a bakery oven or kiln. Creates oil as a valuable by product. This recipes was primarily added as a flavorful test case, so the mod author could get used to the modding scene. It can also be used to create a lot of the fat (oil) that and charcoal required for the other recipes.
 
 The recipe is 4 charcoal, 10 crops => 6 charcoal, 4 oil
