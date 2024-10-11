@@ -1,0 +1,1 @@
+A rescale dirt decomposition mod, only created to give the mod author more experience with modding. This mod is strictly a copy of the original dirt decomposition mod, all conceptual IP right belong to them.
