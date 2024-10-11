@@ -23,38 +23,37 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
-    public partial class CarboEpoxyRecipe : RecipeFamily
+    public partial class CarboNylonRecipe : RecipeFamily
     {
-        public CarboEpoxyRecipe()
+        public CarboNylonRecipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "CarboEpoxy",
-                displayName: Localizer.DoStr("Coal Fat Epoxy"),
+                name: "CarboNylon",
+                displayName: Localizer.DoStr("Coal Based Nylon"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement("Coal", 4, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Coal", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                     new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
-                    new CraftingElement<EpoxyItem>(2),
+                    new CraftingElement<NylonItem>(8),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            // Same as Oil Drilling
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(180, typeof(CuttingEdgeCookingSkill));
+            this.ExperienceOnCraft = typeof(NylonRecipe).ExperienceOnCraft;
+            this.LaborInCalories = CreateLaborInCaloriesValue(typeof(NylonRecipe).LaborInCalories / 4, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(CarboEpoxyRecipe),
-                start: 1.5f,
+                beneficiary: typeof(CarboNylonRecipe),
+                start: typeof(NylonRecipe).CraftMinutes * 2,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Coal Fat Epoxy"),
-                recipeType: typeof(CarboEpoxyRecipe)
+                displayText: Localizer.DoStr("Coal Based Nylon"),
+                recipeType: typeof(CarboNylonRecipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(LaboratoryObject),

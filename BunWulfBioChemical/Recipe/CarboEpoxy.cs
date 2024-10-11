@@ -23,39 +23,37 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
-    public partial class PlasticBiofuel : RecipeFamily
+    public partial class CarboEpoxyRecipe : RecipeFamily
     {
-        public PlasticBiofuel()
+        public CarboEpoxyRecipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "PlasticBiofuel",
-                displayName: Localizer.DoStr("Plastic Container Biofuel, 50% Ethanol"),
+                name: "CarboEpoxy",
+                displayName: Localizer.DoStr("Coal Fat Epoxy"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement(typeof(EthanolItem), 2, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    new IngredientElement("Fat", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
-                    new IngredientElement(typeof(PlasticItem), 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Coal", 4, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
-                    new CraftingElement<BiodieselItem>()
+                    new CraftingElement<EpoxyItem>(2),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            // Same as Oil Drilling
-            this.ExperienceOnCraft = 0.5f;
-            this.LaborInCalories = CreateLaborInCaloriesValue(60, typeof(CuttingEdgeCookingSkill));
+            this.ExperienceOnCraft = typeof(EpoxyRecipe).ExperienceOnCraft;
+            this.LaborInCalories = CreateLaborInCaloriesValue(typeof(EpoxyRecipe).LaborInCalories / 4, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(PlasticBiofuel),
-                start: 0.8f,
+                beneficiary: typeof(CarboEpoxyRecipe),
+                start: typeof(EpoxyRecipe).CraftMinutes * 2,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Plastic Container Biofuel, 50% Ethanol"),
-                recipeType: typeof(PlasticBiofuel)
+                displayText: Localizer.DoStr("Coal Fat Epoxy"),
+                recipeType: typeof(CarboEpoxyRecipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(LaboratoryObject),

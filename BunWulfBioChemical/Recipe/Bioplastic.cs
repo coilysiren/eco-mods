@@ -23,37 +23,37 @@ namespace Eco.Mods.TechTree
     using Eco.Gameplay.Items.Recipes;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
-    public partial class CarboNylonRecipe : RecipeFamily
+    public partial class BioplasticRecipe : RecipeFamily
     {
-        public CarboNylonRecipe()
+        public BioplasticRecipe()
         {
             var recipe = new Recipe();
             recipe.Init(
-                name: "CarboNylon",
-                displayName: Localizer.DoStr("Coal Based Nylon"),
+                name: "Bioplastic",
+                displayName: Localizer.DoStr("Plant Based Bioplastic"),
                 ingredients: new List<IngredientElement>
                 {
-                    new IngredientElement("Coal", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Vegetable", 5, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
+                    new IngredientElement("Fat", 10, typeof(CuttingEdgeCookingSkill), typeof(CuttingEdgeCookingLavishResourcesTalent)),
                 },
                 items: new List<CraftingElement>
                 {
-                    new CraftingElement<NylonItem>(8),
+                    new CraftingElement<PlasticItem>(2),
                 }
             );
             this.Recipes = new List<Recipe> { recipe };
-            // Same as Oil Drilling
-            this.ExperienceOnCraft = 1;
-            this.LaborInCalories = CreateLaborInCaloriesValue(180, typeof(CuttingEdgeCookingSkill));
+            this.ExperienceOnCraft = typeof(PlasticRecipe).ExperienceOnCraft;
+            this.LaborInCalories = CreateLaborInCaloriesValue(typeof(PlasticRecipe).LaborInCalories / 4, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
-                beneficiary: typeof(CarboNylonRecipe),
-                start: 1.5f,
+                beneficiary: typeof(BioplasticRecipe),
+                start: typeof(PlasticRecipe).CraftMinutes * 2,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
             );
             this.Initialize(
-                displayText: Localizer.DoStr("Coal Based Nylon"),
-                recipeType: typeof(CarboNylonRecipe)
+                displayText: Localizer.DoStr("Plant Based Bioplastic"),
+                recipeType: typeof(BioplasticRecipe)
             );
             CraftingComponent.AddRecipe(
                 tableType: typeof(LaboratoryObject),
