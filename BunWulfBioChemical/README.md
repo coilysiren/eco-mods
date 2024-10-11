@@ -4,7 +4,7 @@ An Eco mod that gets Cutting Edge Cooking into a playable state. All of the Oil 
 
 You likely want to use multiple laboratories (3 ~ 4) when using this mod. Best used on a world where crops are plentiful, and iron is hard to come by.
 
-You can find the source code for this mod here: https://github.com/coilysiren/eco-mods/tree/main/BunWulfBioChemical/Recipe
+You can find the source code for this mod here: https://github.com/coilysiren/eco-mods/tree/main/BunWulfBioChemical/
 
 ## Recipes
 
