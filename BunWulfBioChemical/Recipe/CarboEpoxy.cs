@@ -21,6 +21,7 @@ namespace Eco.Mods.TechTree
     using Eco.World.Blocks;
     using Eco.Gameplay.Pipes;
     using Eco.Gameplay.Items.Recipes;
+    using Eco.Gameplay.DynamicValues;
 
     [RequiresSkill(typeof(CuttingEdgeCookingSkill), 1)]
     public partial class CarboEpoxyRecipe : RecipeFamily
@@ -41,12 +42,14 @@ namespace Eco.Mods.TechTree
                     new CraftingElement<EpoxyItem>(2),
                 }
             );
+            var baseRecipe = new EpoxyRecipe();
+            var skill = new CuttingEdgeCookingSkill();
             this.Recipes = new List<Recipe> { recipe };
-            this.ExperienceOnCraft = typeof(EpoxyRecipe).ExperienceOnCraft;
-            this.LaborInCalories = CreateLaborInCaloriesValue(typeof(EpoxyRecipe).LaborInCalories / 4, typeof(CuttingEdgeCookingSkill));
+            this.ExperienceOnCraft = baseRecipe.ExperienceOnCraft;
+            this.LaborInCalories = CreateLaborInCaloriesValue(baseRecipe.LaborInCalories.GetBaseValue / 4, typeof(CuttingEdgeCookingSkill));
             this.CraftMinutes = CreateCraftTimeValue(
                 beneficiary: typeof(CarboEpoxyRecipe),
-                start: typeof(EpoxyRecipe).CraftMinutes * 2,
+                start: baseRecipe.CraftMinutes.GetBaseValue * 2,
                 skillType: typeof(CuttingEdgeCookingSkill),
                 typeof(CuttingEdgeCookingFocusedSpeedTalent),
                 typeof(CuttingEdgeCookingParallelSpeedTalent)
